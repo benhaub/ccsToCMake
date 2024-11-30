@@ -1,0 +1,5 @@
+*build
+simplelink_cc32xx_sdk_7_10_00_13
+sysconfig/*.c
+sysconfig/*.h
+*.lds
