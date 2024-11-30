@@ -1,3 +1,11 @@
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+#You can use this variable in other CMake files to check if you are compiler for a cc32xx
+set(CC32xx 1)
+
+set(tools $ENV{HOME}/ti/ccs1281/ccs/tools/compiler/gcc-arm-none-eabi-9-2019-q4-major)
+set(CMAKE_C_COMPILER ${tools}/bin/arm-none-eabi-gcc)
 set(CMAKE_CXX_COMPILER ${tools}/bin/arm-none-eabi-g++)
 #See https://cmake.org/cmake/help/latest/variable/CMAKE_TRY_COMPILE_TARGET_TYPE.html
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
