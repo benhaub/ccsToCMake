@@ -3,7 +3,7 @@ set(CMAKE_CXX_COMPILER ${tools}/bin/arm-none-eabi-g++)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 set(CMAKE_C_FLAGS "-std=c99 ${CMAKE_C_FLAGS}")
-set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-std=c++2a ${CMAKE_CXX_FLAGS}")
 
 add_compile_options(
   -ffunction-sections
