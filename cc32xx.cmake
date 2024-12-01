@@ -46,7 +46,7 @@ if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_HOST_SYSTEM_NAME} STREQ
     ANY
   )
 else()
-  message(FATAL_ERROR "Only Linux is supported")
+message(FATAL_ERROR "Only Linux or MacOS is supported")
 endif()
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/sysconfig)
