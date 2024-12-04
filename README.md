@@ -17,8 +17,8 @@ Their main purpose is to create a symbolic link to your CCS project and your SDK
 
 ### 2. Configure toolchain.cmake paths
 
-Make sure the path for the compiler is correct. Especially make sure the path to Code Composer Studio is correct.
-You shouldn't need to change anything else. If you need extra options related to your software or you want to compile
+Make sure the path for the compiler is correct. You shouldn't need to change anything else.
+If you need extra options related to your software or you want to compile
 additional libraries then add add them to your own CMakeLists.txt. The options here restricted to linker options or
 compilition options specific to the abi and hardware.
 
@@ -35,8 +35,8 @@ endif()
 
 ### 4. Strip the executable
 
-Since these cmake files should not make any assumptions about where you have chosen to place your .elf executable,
-you will need to add this into you CMakeLists.txt. Something like this should work:
+Since these cmake files should not make any assumptions about where you have chosen to place your `.elf` executable,
+you will need to add this into your CMakeLists.txt. Something like this should work:
 
 ```
 add_custom_command(TARGET ${PROJECT_NAME}${EXECUTABLE_SUFFIX} POST_BUILD
@@ -68,7 +68,16 @@ If you're not using FreeRTOS for your project then skip this step.
 Texas instruments usually provides a Quick Start Guide for their microcontrollers like [this one](https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html). It will tell you which version of FreeRTOS is officially supported. Once you know then you must checkout
 a version using the available tags in the FreeRTOS submodule otherwise the Source directory will not be populated with any files.
 
-### 7. Building
+### 7. Copy the source files.
+
+Before you copy over any files, add a stub `main.c`, create a target, and try to compile the project with just one file to make sure all the libraries are being found and linked properly properly.
+
+Copy over all of the *.[ch] and or *.[cpphpp] files to your project directory structure. Add them to your CMakeLists.txt in an way you like.
+You can add them all use a one-liner add_executable, or you can place them into directories and use add_subdirectory.
+
+You may also need to copy over some directories like `userFiles`.
+
+### 8. Building
 
 You need to add the --toolchain option when calling CMake and point it to ccsToCMake/\<partNumber\>.cmake
 
