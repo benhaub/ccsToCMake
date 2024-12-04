@@ -12,9 +12,8 @@ directory structure...
 
 ### 1. Configure ccsProject.cmake to read your CCS project.
 
-Set SDK, SDK_LINK, CCS_PROJECT and SYSCONFIG_TYPE are set appropriately.
-Their main purpose is to create a symbolic link to your CCS project and your
-SDK inside of your vscode project.
+Set SDK, SDK_LINK, CCS_PROJECT, CCS_PROJECT_LINK, and SYSCONFIG_TYPE appropriately.
+Their main purpose is to create a symbolic link to your CCS project and your SDK inside of your vscode project.
 
 ### 2. Configure toolchain.cmake paths
 
@@ -24,7 +23,8 @@ additional libraries then add add them to your own CMakeLists.txt. The options h
 compilition options specific to the abi and hardware.
 
 ### 3. include() ccsToCmake/\<partNumber\>.cmake in your project CMakeLists.txt
-I reccommend something like this if using CC32xx:
+
+I recommend something like this if using CC32xx:
 
 ```
 #Call CMake with -DCC32xx=1
