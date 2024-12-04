@@ -27,11 +27,14 @@ compilition options specific to the abi and hardware.
 I reccommend something like this if using CC32xx:
 
 ```
-//Call CMake with -DCC32xx=1
+#Call CMake with -DCC32xx=1
 if (CC32xx)
   include(${CMAKE_CURRENT_LIST_DIR}/ccsToCMake/cc32xx.cmake)
 endif()
 ```
+
+Your CMakeLists.txt must also define a target using the two variable PROJECT_NAME and EXECUTABLE_SUFFIX.
+The target can not be an INTERFACE.
 
 ### 4. Check out the required version of FreeRTOS.
 

@@ -12,7 +12,7 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(CMAKE_C_FLAGS "-std=c99 ${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_FLAGS "-std=c++2a ${CMAKE_CXX_FLAGS}")
 
-#CCS_PROJECT_SYMLINK is set in ccsProject.cmake
+#CCS_PROJECT_LINK is set in ccsProject.cmake
 file(GLOB linkerScript ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}/*.lds)
 
 add_compile_options(
@@ -21,21 +21,25 @@ add_compile_options(
   -mfloat-abi=soft
 )
 
+include_directories(${tools}/arm-none-eabi/include)
+include_directories(${tools}/arm-none-eabi/include/newlib-nano)
+
+link_directories(${tools}/arm-none-eabi/lib/thumb/v7e-m/nofp/)
+
+#Target is set in <target>.cmake (e.g. )
 add_link_options(
   -nostartfiles
   -static
-  -specs=nano.specs
+  --specs=nano.specs
   -Wl,-T${linkerScript}
   -Wl,--gc-sections
-  -Wl,-Map,cc32xx.map
+  -Wl,-Map,${CCS_PROJECT_LINK}.map
 )
 
 link_libraries(
-  stdc++
   gcc
   c
   m
   nosys
+  stdc++
 )
-include_directories(${tools}/arm-none-eabi/lib/thumb/v7e-m/nofp/)
-include_directories(${tools}/arm-none-eabi/include/newlib-nano)
