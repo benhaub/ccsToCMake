@@ -7,6 +7,9 @@ For example, cc32xx simplelink microcontrollers are supported since a cc32xx.cma
 
 ## Setup steps
 
+Typically you would submodule this into your project. Assuming you've done that and the submodule `ccsToCMake` exists in your project
+directory structure...
+
 ### 1. Configure ccsPorject.cmake to read your CCS project.
 
 Set SDK, SDK_LINK, CCS_PROJECT and SYSCONFIG_TYPE are set appropriately.
