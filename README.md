@@ -10,7 +10,7 @@ For example, cc32xx simplelink microcontrollers are supported since a cc32xx.cma
 Typically you would submodule this into your project. Assuming you've done that and the submodule `ccsToCMake` exists in your project
 directory structure...
 
-### 1. Configure ccsPorject.cmake to read your CCS project.
+### 1. Configure ccsProject.cmake to read your CCS project.
 
 Set SDK, SDK_LINK, CCS_PROJECT and SYSCONFIG_TYPE are set appropriately.
 Their main purpose is to create a symbolic link to your CCS project and your
@@ -33,17 +33,42 @@ if (CC32xx)
 endif()
 ```
 
-Your CMakeLists.txt must also define a target using the two variable PROJECT_NAME and EXECUTABLE_SUFFIX.
-The target can not be an INTERFACE.
+### 4. Strip the executable
 
-### 4. Check out the required version of FreeRTOS.
+Since these cmake files should not make any assumptions about where you have chosen to place your .elf executable,
+you will need to add this into you CMakeLists.txt. Something like this should work:
+
+```
+add_custom_command(TARGET ${PROJECT_NAME}${EXECUTABLE_SUFFIX} POST_BUILD
+COMMAND
+  ${CMAKE_OBJCOPY} ARGS -O binary ${CMAKE_SOURCE_DIR}/customToolchain_build/${PROJECT_NAME}${EXECUTABLE_SUFFIX} ${CMAKE_SOURCE_DIR}/customToolchain_build/${PROJECT_NAME}.bin
+  WORKING_DIRECTORY
+    ${CMAKE_CURRENT_LIST_DIR}
+  COMMENT
+    "Stripping executable"
+  VERBATIM
+)
+```
+
+### 5. Define a CMake project in the form ${PROJECT_NAME}${EXECUTABLE_SUFFIX}
+Your CMakeLists.txt must also define a target using the two variables PROJECT_NAME and EXECUTABLE_SUFFIX.
+The target can not be an INTERFACE. One way to do this:
+
+```
+project(CCS_EXAMPLE LANGUAGES C CXX)
+set(EXECUTABLE_SUFFIX .elf)
+
+add_executable(${PROJECT_NAME}${EXECUTABLE_SUFFIX} main.c)
+```
+
+### 6. Check out the required version of FreeRTOS.
 
 If you're not using FreeRTOS for your project then skip this step.
 
 Texas instruments usually provides a Quick Start Guide for their microcontrollers like [this one](https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html). It will tell you which version of FreeRTOS is officially supported. Once you know then you must checkout
 a version using the available tags in the FreeRTOS submodule otherwise the Source directory will not be populated with any files.
 
-### 4. Building
+### 7. Building
 
 You need to add the --toolchain option when calling CMake and point it to ccsToCMake/\<partNumber\>.cmake
 

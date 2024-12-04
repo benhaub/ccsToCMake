@@ -43,14 +43,3 @@ target_compile_definitions(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE
     DeviceFamily_CC3220 _REENT_SMALL
 )
-
-#This does not belong here. Should go in CMakeLists.txt
-add_custom_command(TARGET ${PROJECT_NAME}${EXECUTABLE_SUFFIX} POST_BUILD
-COMMAND
-  ${CMAKE_OBJCOPY} ARGS -O binary ${CMAKE_SOURCE_DIR}/customToolchain_build/${PROJECT_NAME}${EXECUTABLE_SUFFIX} ${CMAKE_SOURCE_DIR}/customToolchain_build/${PROJECT_NAME}.bin
-  WORKING_DIRECTORY
-    ${CMAKE_CURRENT_LIST_DIR}
-  COMMENT
-    "Stripping executable"
-  VERBATIM
-)
