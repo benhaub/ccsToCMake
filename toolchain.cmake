@@ -26,7 +26,6 @@ include_directories(${tools}/arm-none-eabi/include/newlib-nano)
 
 link_directories(${tools}/arm-none-eabi/lib/thumb/v7e-m/nofp/)
 
-#Target is set in <target>.cmake (e.g. )
 add_link_options(
   -nostartfiles
   -static
