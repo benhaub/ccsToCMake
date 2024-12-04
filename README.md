@@ -34,7 +34,7 @@ endif()
 
 If you're not using FreeRTOS for your project then skip this step.
 
-Texas instruments usually provides a Quick Start Guide for their microcontrollers like (this one)[https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html]. It will tell you which version of FreeRTOS is officially supported. Once you know then you must checkout
+Texas instruments usually provides a Quick Start Guide for their microcontrollers like [this one](https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html). It will tell you which version of FreeRTOS is officially supported. Once you know then you must checkout
 a version using the available tags in the FreeRTOS submodule otherwise the Source directory will not be populated with any files.
 
 ### 4. Building
