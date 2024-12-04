@@ -20,7 +20,7 @@ You shouldn't need to change anything else. If you need extra options related to
 additional libraries then add add them to your own CMakeLists.txt. The options here restricted to linker options or
 compilition options specific to the abi and hardware.
 
-### 3. include() ccsToCmake/<partNumber>.cmake in your project CMakeLists.txt
+### 3. include() ccsToCmake/\<partNumber\>.cmake in your project CMakeLists.txt
 I reccommend something like this if using CC32xx:
 
 ```
@@ -39,6 +39,6 @@ a version using the available tags in the FreeRTOS submodule otherwise the Sourc
 
 ### 4. Building
 
-You need to add the --toolchain option when calling CMake and point it to ccsToCMake/<partNumber>.cmake
+You need to add the --toolchain option when calling CMake and point it to ccsToCMake/\<partNumber\>.cmake
 
 e.g. `cmake -G Ninja -S build --toolchain ccsToCMake/cc32xx.cmake`
