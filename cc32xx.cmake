@@ -1,8 +1,8 @@
+#Add the sysconfig generated source files. These are set in ccsProject.cmake
 target_sources(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE
-  ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}/${SYSCONFIG_TYPE}/syscfg/ti_drivers_config.c
-  ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}/${SYSCONFIG_TYPE}/syscfg/ti_freertos_config.c
-  ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}/${SYSCONFIG_TYPE}/syscfg/ti_freertos_portable_config.c
+    ${sysconfigCSource}
+    ${sysconfigCxxSource}
 )
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
