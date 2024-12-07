@@ -1,6 +1,7 @@
 ## ccsToCmake
 Given a Code Composer Studio project, copy the files necessary to be able to start developing in a CMake environement
-from the IDE of your choosing. This will not copy any application level source files. Only the ones neccessary for board bring-up.
+from the IDE of your choosing (e.g. VsCode). This will not copy any application level source files. Only the ones neccessary
+for board bring-up.
 
 The supported microcontrollers are given by the <partNumber>.cmake files in the repository.
 For example, cc32xx simplelink microcontrollers are supported since a cc32xx.cmake file exists.
@@ -17,7 +18,7 @@ You need to build it here first so that the sysconfig files are generated.
 ### 2. Configure ccsProject.cmake to read your CCS project.
 
 Set SDK, SDK_LINK, CCS_PROJECT, CCS_PROJECT_LINK, and SYSCONFIG_TYPE appropriately.
-Their main purpose is to create a symbolic link to your CCS project and your SDK inside of your vscode project.
+Their main purpose is to create a symbolic link to your CCS project and your SDK inside of your project.
 
 ### 3. Configure toolchain.cmake paths
 
@@ -74,10 +75,10 @@ a version using the available tags in the FreeRTOS submodule otherwise the Sourc
 
 ### 8. Copy the source files.
 
-Before you copy over any files, add a stub `main.c`, create a target, and try to compile the project with just one file to make sure all the libraries are being found and linked properly properly.
+Before you copy over any files, add a stub `main.c`, create a target, and try to compile the project with just one file to make sure all the libraries are being found and linked properly properly. If you get errors, make sure there are no typos in ccsProject.cmake
 
 Copy over all of the *.[ch] and or *.[cpphpp] files to your project directory structure. Add them to your CMakeLists.txt in an way you like.
-You can add them all use a one-liner add_executable, or you can place them into directories and use add_subdirectory.
+You can add them all using a one-liner `add_executable`, or you can place them into directories and use `add_subdirectory`.
 
 You may also need to copy over some directories like `userFiles`.
 
