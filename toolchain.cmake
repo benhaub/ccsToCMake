@@ -38,6 +38,7 @@ add_link_options(
   -Wl,-T${linkerScript}
   -Wl,--gc-sections
   -Wl,-Map,${CCS_PROJECT_LINK}.map
+  -Wl,--print-memory-usage
 )
 
 link_libraries(
