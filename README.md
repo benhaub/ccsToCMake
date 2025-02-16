@@ -13,7 +13,9 @@ directory structure...
 
 ### 1. Build the project in Code Composer Studio
 
-You need to build it here first so that the sysconfig files are generated.
+Use the Sysconfig editor in any way you'd like to add or remove configurations. Build the project in Code Composer Studio so that all the
+files are generated. For reasons in which I can't comprehend, The Sysconfig tool only allows you to partially change the FreeRTOSConfig.h file meaning if you change anything not offered by the sysconfig tool it will be overwritten on your next build. The only solution is to tell Sysconfig not to regenerate the file. The instructions to do so are here:
+https://e2e.ti.com/support/wireless-connectivity/bluetooth-group/bluetooth/f/bluetooth-forum/1201607/cc2340r5-how-to-change-a-config-in-freertosconfig-h-with-simplelink_cc23xx_sdk_6_40_00_21_eng.
 
 ### 2. Configure ccsProject.cmake to read your CCS project.
 
