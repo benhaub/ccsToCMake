@@ -3,8 +3,8 @@ Given a Code Composer Studio project, copy the files necessary to be able to sta
 from the IDE of your choosing (e.g. VsCode). This will not copy any application level source files. Only the ones neccessary
 for board bring-up.
 
-The supported microcontrollers are given by the <partNumber>.cmake files in the repository.
-For example, cc32xx simplelink microcontrollers are supported since a cc32xx.cmake file exists.
+The supported microcontrollers are given by the `./<partNumber>` folder in the repository.
+For example, Cc32xx simplelink microcontrollers are supported since a `Cc32xx/target.cmake` file exists.
 
 ## Setup steps
 
@@ -12,6 +12,8 @@ Typically you would submodule this into your project. Assuming you've done that 
 directory structure...
 
 ### 1. Build the project in Code Composer Studio
+
+Skip this step if your project does not use sysconfig (e.g. Tm4c123)
 
 Use the Sysconfig editor in any way you'd like to add or remove configurations. Build the project in Code Composer Studio so that all the
 files are generated. For reasons in which I can't comprehend, The Sysconfig tool only allows you to partially change the FreeRTOSConfig.h file meaning if you change anything not offered by the sysconfig tool it will be overwritten on your next build. The only solution is to tell Sysconfig not to regenerate the file. The instructions to do so are here:
@@ -29,14 +31,14 @@ If you need extra options related to your software or you want to compile
 additional libraries then add add them to your own CMakeLists.txt. The options here restricted to linker options or
 compilition options specific to the ABI and hardware.
 
-### 4. include() ccsToCmake/\<partNumber\>.cmake in your project CMakeLists.txt
+### 4. include() ccsToCmake/\<partNumber\>/target.cmake in your project CMakeLists.txt
 
 I recommend something like this if using CC32xx:
 
 ```
 #Call CMake with -DCC32xx=1
-if (CC32xx)
-  include(${CMAKE_CURRENT_LIST_DIR}/ccsToCMake/cc32xx.cmake)
+if (Cc32xx)
+  include(${CMAKE_CURRENT_LIST_DIR}/ccsToCMake/Cc32xx/target.cmake)
 endif()
 ```
 
@@ -68,12 +70,11 @@ set(EXECUTABLE_SUFFIX .elf)
 add_executable(${PROJECT_NAME}${EXECUTABLE_SUFFIX} main.c)
 ```
 
-### 7. Check out the required version of FreeRTOS.
+### 7 (Optional). Update the version of FreeRTOS.
 
 If you're not using FreeRTOS for your project then skip this step.
 
-Texas instruments usually provides a Quick Start Guide for their microcontrollers like [this one](https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html). It will tell you which version of FreeRTOS is officially supported. Once you know then you must checkout
-a version using the available tags in the FreeRTOS submodule otherwise the Source directory will not be populated with any files.
+Texas instruments usually provides a Quick Start Guide for their microcontrollers like [this one](https://software-dl.ti.com/ecs/SIMPLELINK_CC3220_SDK/2_20_00_10/exports/docs/simplelink_mcu_sdk/Quick_Start_Guide.html). It will tell you which version of FreeRTOS is officially supported. This version will be checked out by default but you may update to a different version using the available tags in the FreeRTOS submodule otherwise the Source directory will not be populated with any files.
 
 ### 8. Copy the source files.
 
@@ -86,6 +87,6 @@ You may also need to copy over some directories like `userFiles`.
 
 ### 9. Building
 
-You need to add the --toolchain option when calling CMake and point it to ccsToCMake/\<partNumber\>.cmake
+You need to add the --toolchain option when calling CMake and point it to ccsToCMake/\<partNumber\>/target.cmake
 
-e.g. `cmake -G Ninja -S build --toolchain ccsToCMake/cc32xx.cmake`
+e.g. `cmake -G Ninja -S build --toolchain ccsToCMake/Cc32xx/target.cmake`

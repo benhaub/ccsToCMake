@@ -32,11 +32,11 @@ PUBLIC
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}${SDK_LINK}/source/
-    ${CMAKE_CURRENT_LIST_DIR}${SDK_LINK}/source/ti/posix/gcc
-    ${CMAKE_CURRENT_LIST_DIR}${SDK_LINK}/kernel/freertos
-    ${CMAKE_CURRENT_LIST_DIR}${SDK_LINK}/source/ti/posix/freertos
-    ${CMAKE_CURRENT_LIST_DIR}${SDK_LINK}/source/ti/drivers/
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/source/
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/source/ti/posix/gcc
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/kernel/freertos
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/source/ti/posix/freertos
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/source/ti/drivers/
 )
 
 target_compile_definitions(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
