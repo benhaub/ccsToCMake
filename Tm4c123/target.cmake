@@ -20,26 +20,26 @@ get_target_property(Includes ${PROJECT_NAME}${EXECUTABLE_SUFFIX} INCLUDE_DIRECTO
 message(STATUS "Includes: ${Includes}")
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
-PUBLIC
+PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}
 )
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
-PUBLIC
+PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}
 )
 
 target_link_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
-PUBLIC
+PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/driverlib/gcc
 )
 #The order in which you link libraries matters!
 target_link_libraries(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
-PUBLIC
+PRIVATE
     driver
 )
 
 target_compile_definitions(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
-PUBLIC
+PRIVATE
     PART_TM4C123GH6PM
 )
