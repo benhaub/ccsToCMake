@@ -1,12 +1,13 @@
 target_sources(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE FILE_SET headers TYPE HEADERS BASE_DIRS ${CMAKE_CURRENT_LIST_DIR} FILES
   ${startupHeaders}
+  ${CMAKE_CURRENT_LIST_DIR}/pinout.h
 )
-#Add the sysconfig generated source files. These are set in ccsProject.cmake
 target_sources(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE
   ${startupSources}
   ${thirdPartySourceFiles}
+  ${CMAKE_CURRENT_LIST_DIR}/pinout.c
 )
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
