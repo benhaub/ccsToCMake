@@ -17,9 +17,6 @@ PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/third_party/FreeRTOS/Source/portable/${PORT}
 )
 
-get_target_property(Includes ${PROJECT_NAME}${EXECUTABLE_SUFFIX} INCLUDE_DIRECTORIES)
-message(STATUS "Includes: ${Includes}")
-
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}
