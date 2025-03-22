@@ -1,13 +1,19 @@
 target_sources(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE FILE_SET headers TYPE HEADERS BASE_DIRS ${CMAKE_CURRENT_LIST_DIR} FILES
   ${startupHeaders}
+  ${tivaWareUtilsHeaders}
+  #Auto generated sysconfig pinmux file
   ${CMAKE_CURRENT_LIST_DIR}/pinout.h
+  #TI driverlib utility used in logging module.
+  ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/utils/uartstdio.h
 )
 target_sources(${PROJECT_NAME}${EXECUTABLE_SUFFIX}
 PRIVATE
   ${startupSources}
+  ${tivaWareUtilsSources}
   ${thirdPartySourceFiles}
   ${CMAKE_CURRENT_LIST_DIR}/pinout.c
+  ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/utils/uartstdio.c
 )
 
 target_include_directories(${PROJECT_NAME}${EXECUTABLE_SUFFIX}

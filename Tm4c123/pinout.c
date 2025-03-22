@@ -35,7 +35,7 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 21/03/2025 at 12:19:43
+// This file was automatically generated on 21/03/2025 at 17:05:00
 // by TI PinMux version 1.20.0+3587
 //
 //*****************************************************************************
@@ -73,7 +73,6 @@ PinoutSet(void)
     // Enable Peripheral Clocks 
     //
 	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 
     //
     // Configure the GPIO Pin Mux for PB0
@@ -83,25 +82,11 @@ PinoutSet(void)
 	MAP_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0);
 
     //
-    // Configure the GPIO Pin Mux for PC4
-	// for U1RTS
-    //
-	MAP_GPIOPinConfigure(GPIO_PC4_U1RTS);
-	MAP_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4);
-
-    //
     // Configure the GPIO Pin Mux for PB1
 	// for U1TX
     //
 	MAP_GPIOPinConfigure(GPIO_PB1_U1TX);
 	MAP_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_1);
-
-    //
-    // Configure the GPIO Pin Mux for PC5
-	// for U1CTS
-    //
-	MAP_GPIOPinConfigure(GPIO_PC5_U1CTS);
-	MAP_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_5);
 
 }
 

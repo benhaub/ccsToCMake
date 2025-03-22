@@ -26,7 +26,6 @@ add_compile_options(
   -mthumb
   -mfloat-abi=hard
   -mfpu=fpv4-sp-d16
-  -fno-use-cxa-atexit
 )
 
 include_directories(${tools}/arm-none-eabi/include)

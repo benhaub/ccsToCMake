@@ -8,16 +8,16 @@
 /**
  * These are the peripherals and settings in this configuration
  */
-const iUART1 = scripting.addPeripheral("UART");
-iUART1.$name = "UART1";
+const iUART1     = scripting.addPeripheral("UART");
+iUART1.$name     = "UART1";
+iUART1.$assign   = "UART1";
+iUART1.RTS.$used = false;
+iUART1.CTS.$used = false;
 
 /**
  * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-iUART1.$suggestSolution     = "UART1";
-iUART1.RX.$suggestSolution  = "PB0";
-iUART1.RTS.$suggestSolution = "PC4";
-iUART1.TX.$suggestSolution  = "PB1";
-iUART1.CTS.$suggestSolution = "PC5";
+iUART1.RX.$suggestSolution = "PB0";
+iUART1.TX.$suggestSolution = "PB1";
