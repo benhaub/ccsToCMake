@@ -1,0 +1,1 @@
+Since code composer studio does not support FreeRTOS anymore on TivaWare and the example projects for FreeRTOS that are provided by TI don't compile with gcc and do not support C++ a modified `tm4c123gh6pm_startup_gcc.c` and `FreeRTOSConfig.h` were added to the project so that you can choose to use those instead of the ones supplied by Code Composer Studio.
