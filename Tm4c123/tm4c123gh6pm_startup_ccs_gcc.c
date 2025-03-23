@@ -30,6 +30,8 @@
 #include "inc/hw_nvic.h"
 #include "inc/hw_ints.h"
 #include "driverlib/interrupt.h"
+//FreeRTOS
+#include "FreeRTOSConfig.h"
 
 //*****************************************************************************
 //
@@ -53,10 +55,19 @@ extern int main(void);
 
 //*****************************************************************************
 //
-// Reserve space for the system stack.
+// Reserve space for the system heap. This is used by FreeRTOS and must be named ucHeap.
 //
 //*****************************************************************************
-static uint32_t pui32Stack[768];
+#if (configAPPLICATION_ALLOCATED_HEAP == 1)
+    uint8_t __attribute__((section(".heap"), used)) ucHeap[configTOTAL_HEAP_SIZE];
+#endif
+
+//*****************************************************************************
+//
+// linker variable that marks the top of stack (msp)
+//
+//*****************************************************************************
+extern unsigned long _stack_end;
 
 //*****************************************************************************
 //
@@ -75,8 +86,7 @@ extern void vPortSVCHandler( void );
 //
 //*****************************************************************************
 __attribute__ ((section(".intvecs"))) __attribute__((used)) static void (* const g_pfnVectors[])(void) = {
-    (void (*)(void))((uint32_t)pui32Stack + sizeof(pui32Stack)),
-                                            // The initial stack pointer
+    (void (*)(void))((uint32_t)&_stack_end),// The initial stack pointer
     ResetISR,                               // The reset handler
     NmiSR,                                  // The NMI handler
     FaultISR,                               // The hard fault handler
@@ -310,10 +320,6 @@ __attribute__((used)) void localProgramStart(void)
     // floating-point registers (which will fault if floating-point is not
     // enabled).  Any configuration of the floating-point unit using DriverLib
     // APIs must be done here prior to the floating-point unit being enabled.
-    //
-    // Note that this does not use DriverLib since it might not be included in
-    // this project.
-    //
     HWREG(NVIC_CPAC) = ((HWREG(NVIC_CPAC) &
                          ~(NVIC_CPAC_CP10_M | NVIC_CPAC_CP11_M)) |
                         NVIC_CPAC_CP10_FULL | NVIC_CPAC_CP11_FULL);

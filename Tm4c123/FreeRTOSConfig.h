@@ -37,6 +37,8 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
+#include <stddef.h>
+
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -52,10 +54,10 @@
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 1
 #define configUSE_TICK_HOOK                 0
-#define configCPU_CLOCK_HZ                  ( ( unsigned long ) 80000000 )
+#define configCPU_CLOCK_HZ                  ( ( unsigned long ) APF_CLOCK_FREQUENCY )
 #define configTICK_RATE_HZ                  ( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE            ( ( unsigned short ) 128 )
-#define configTOTAL_HEAP_SIZE               ( ( size_t ) ( 2000 ) )
+#define configTOTAL_HEAP_SIZE               ( ( size_t ) ( 8*1024 ) )
 #define configMAX_TASK_NAME_LEN             ( 12 )
 #define configUSE_TRACE_FACILITY            1
 #define configUSE_16_BIT_TICKS              0
@@ -65,12 +67,12 @@
 #define configUSE_RECURSIVE_MUTEXES         0
 #define configCHECK_FOR_STACK_OVERFLOW      2
 //Additional - Ben Haubrich, March 17th, 2025
-/* Software timer definitions. */
 #define configUSE_TIMERS 1
 #define configTIMER_TASK_PRIORITY (5)
 #define configTIMER_QUEUE_LENGTH (5)
 #define configTIMER_TASK_STACK_DEPTH (configMINIMAL_STACK_SIZE)
 #define configUSE_COUNTING_SEMAPHORES 1
+#define configAPPLICATION_ALLOCATED_HEAP 0
 //End of additions - Ben Haubrich
 
 //#define configMAX_PRIORITIES                ( ( unsigned portBASE_TYPE ) 16 )

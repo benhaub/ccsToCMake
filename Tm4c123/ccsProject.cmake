@@ -1,10 +1,10 @@
 #You can find the correct port just by opening up an example project in code composer studio
-#and checking where the project is grabbing the freertos portable files from
+#and checking where the project is grabbing the freertos portable files from.
+#For Tm4c123 you must also change the port file under third_party in the CCS project.
 set(PORT GCC/ARM_CM4F)
 #Regex character class to select the heap scheme. Edit so that it matches all the heap schemes you don't want (inverse).
-#This one, for example, matches heap_1 and then heap_3 to heap_5 inclusive `[3-5]`. heap_2 is the only one not inlcuded so that's what we'll use.
-#Code Composer Studio projects use heap_2 so that's why that is the default.
-set(HEAP_SCHEME heap_[13-5])
+#For example [13-5], matches heap_1 and then heap_3 to heap_5 inclusive `[3-5]`. heap_2 is the only one not inlcuded so that's what we'll use.
+set(HEAP_SCHEME heap_[1-35])
 
 #Follow the guide below to get Tm4c123 and Tm4c129 devices set up on Code Composer Studio.
 #https://www.ti.com/lit/an/spma085/spma085.pdf?ts=1742097771637&ref_url=https%253A%252F%252Fdev.ti.com%252F
@@ -56,10 +56,16 @@ file(GLOB_RECURSE thirdPartyDirectories RELATIVE ${CMAKE_CURRENT_LIST_DIR}/${CCS
 )
 #Loop through the third-party directory structure created by the project and grab the relevant files.
 foreach (folder in ${thirdPartyDirectories})
-  file(GLOB thirdPartyFiles LIST_DIRECTORIES true
+  file(GLOB thirdPartySourceFiles LIST_DIRECTORIES true
     ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/${folder}/*[\.c|\.asm]
   )
-  list(APPEND thirdPartySourceFiles ${thirdPartyFiles})
+  list(APPEND thirdPartySources ${thirdPartySourceFiles})
+
+  file(GLOB thirdPartyHeaderFiles LIST_DIRECTORIES true
+    ${CMAKE_CURRENT_LIST_DIR}/${SDK_LINK}/${folder}/*[\.h]
+  )
+  list(APPEND thirdPartyHeaders ${thirdPartyHeaderFiles})
 endforeach()
-#We grabbed all the heap shemes, so filter out the ones we don't need.
-list(FILTER thirdPartySourceFiles EXCLUDE REGEX ${HEAP_SCHEME})
+
+#We grabbed all the heap schemes, so filter out the ones we don't need.
+list(FILTER thirdPartySources EXCLUDE REGEX ${HEAP_SCHEME})
