@@ -246,7 +246,7 @@ __attribute__ ((section(".intvecs"))) __attribute__((used)) static void (* const
 //*****************************************************************************
 //
 // The following are arrays of pointers to constructor functions that need to
-// be called during startup to initialize global objects.
+// be called during startup to initialize global objects. It's a libc thing.
 //
 //*****************************************************************************
 extern void (*__init_array_start[])(void);

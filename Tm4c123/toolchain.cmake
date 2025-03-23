@@ -1,5 +1,3 @@
-include(${CMAKE_CURRENT_LIST_DIR}/ccsProject.cmake)
-
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
@@ -11,9 +9,6 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 set(CMAKE_C_FLAGS "-std=c2x ${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_FLAGS "-std=c++2a ${CMAKE_CXX_FLAGS}")
-
-#CCS_PROJECT_LINK is set in ccsProject.cmake
-file(GLOB linkerScript ${CMAKE_CURRENT_LIST_DIR}/${CCS_PROJECT_LINK}/*.lds)
 
 #The driver lib is built with a hard fp and so anything that links it must also use a hard fp
 #cxa_atexit information: https://itanium-cxx-abi.github.io/cxx-abi/abi.html#dso-dtor-motivation
@@ -41,9 +36,9 @@ add_link_options(
   -nodefaultlibs
   -static
   --specs=nano.specs
-  -Wl,-T${linkerScript}
+  -Wl,-T${CMAKE_CURRENT_LIST_DIR}/tm4c123gh6pm.lds
   -Wl,--gc-sections
-  -Wl,-Map,${CCS_PROJECT_LINK}.map
+  -Wl,-Map,tm4c123gh6pm.map
   -Wl,--print-memory-usage
 )
 
