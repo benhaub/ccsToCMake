@@ -39,6 +39,10 @@
 
 #include <stddef.h>
 
+#ifndef APP_CLOCK_FREQUENCY
+#error "Define APP_CLOCK_FREQUENCY to be the desired clock frequency for your application"
+#endif
+
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -54,7 +58,7 @@
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 1
 #define configUSE_TICK_HOOK                 0
-#define configCPU_CLOCK_HZ                  ( ( unsigned long ) APF_CLOCK_FREQUENCY )
+#define configCPU_CLOCK_HZ                  ( ( unsigned long ) APP_CLOCK_FREQUENCY )
 #define configTICK_RATE_HZ                  ( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE            ( ( unsigned short ) 128 )
 #define configTOTAL_HEAP_SIZE               ( ( size_t ) ( 12*1024 ) )
