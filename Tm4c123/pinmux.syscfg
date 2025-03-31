@@ -8,6 +8,14 @@
 /**
  * These are the peripherals and settings in this configuration
  */
+const iPWM1      = scripting.addPeripheral("PWM");
+iPWM1.$name      = "MyPWM1";
+iPWM1.PWM4.$used = false;
+iPWM1.PWM3.$used = false;
+iPWM1.PWM7.$used = false;
+iPWM1.PWM2.$used = false;
+iPWM1.PWM6.$used = false;
+iPWM1.PWM5.$used = false;
 const iUART1     = scripting.addPeripheral("UART");
 iUART1.$name     = "UART1";
 iUART1.$assign   = "UART1";
@@ -19,5 +27,9 @@ iUART1.CTS.$used = false;
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-iUART1.RX.$suggestSolution = "PB0";
-iUART1.TX.$suggestSolution = "PB1";
+iPWM1.$suggestSolution        = "PWM1";
+iPWM1.PWM0.$suggestSolution   = "PD0";
+iPWM1.FAULT0.$suggestSolution = "PF4";
+iPWM1.PWM1.$suggestSolution   = "PD1";
+iUART1.RX.$suggestSolution    = "PB0";
+iUART1.TX.$suggestSolution    = "PB1";
