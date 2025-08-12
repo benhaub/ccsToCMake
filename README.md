@@ -6,6 +6,9 @@ for board bring-up.
 The supported microcontrollers are given by the `./<partNumber>` folder in the repository.
 For example, Cc32xx simplelink microcontrollers are supported since a `Cc32xx/target.cmake` file exists.
 
+Since the CMake code add new files within this respository, you may want to add `ignore = dirty` or `ignore = all`
+to your `.gitmodules`.
+
 ## Setup steps
 
 Typically you would submodule this into your project. Assuming you've done that and the submodule `ccsToCMake` exists in your project
