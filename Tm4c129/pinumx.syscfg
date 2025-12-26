@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "TM4C129x" --package "128 Pin QFP|32x32" --part "TM4C1290NCPDT"
+ * @versions {"tool":"1.20.0+3587"}
+ */
+
+/**
+ * These are the peripherals and settings in this configuration
+ */
+const iGPIO1      = scripting.addPeripheral("GPIO");
+iGPIO1["0"].pu_pd = "pu";
+iGPIO1["0"].io    = "output";
+iGPIO1.$name      = "Spi1ChipSelect";
+const iGPIO2      = scripting.addPeripheral("GPIO");
+iGPIO2["0"].pu_pd = "pu";
+iGPIO2["0"].io    = "output";
+iGPIO2.$name      = "LcdPowerDown";
+const iSSI1       = scripting.addPeripheral("SSI");
+iSSI1.$name       = "LcdSSI1";
+iSSI1.FSS.$used   = false;
+const iUART1      = scripting.addPeripheral("UART");
+iUART1.$name      = "StdOutUART1";
+iUART1.DCD.$used  = false;
+iUART1.DTR.$used  = false;
+iUART1.CTS.$used  = false;
+iUART1.DSR.$used  = false;
+iUART1.RTS.$used  = false;
+iUART1.RI.$used   = false;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+iGPIO1["0"].$suggestSolution = "PD0";
+iGPIO2["0"].$suggestSolution = "PD1";
+iSSI1.$suggestSolution       = "SSI1";
+iSSI1.XDAT0.$suggestSolution = "PE4";
+iSSI1.XDAT3.$suggestSolution = "PD5";
+iSSI1.XDAT1.$suggestSolution = "PE5";
+iSSI1.XDAT2.$suggestSolution = "PD4";
+iSSI1.CLK.$suggestSolution   = "PB5";
+iUART1.$suggestSolution      = "UART0";
+iUART1.RX.$suggestSolution   = "PA0";
+iUART1.TX.$suggestSolution   = "PA1";

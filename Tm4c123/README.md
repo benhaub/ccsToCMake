@@ -1,3 +1,3 @@
-Code Composer Studio has really bad support for Tm4c123 and FreeRTOS and even worse if you want to throw gcc in there as well.
-The example projects only work with the TI compiler and TI-RTOS, and the FreeRTOS demos they do provide are either separate from the
-TivaWare SDK or found spordically on the forums with TI employees providing links to them. I was not able to get Code Composer Studio to compile any FreeRTOS/GCC projects So the files have just been copied directly to this directory. Sysconfig is still used but only does basic pin muxing. It does not generate init functions for you like Cc32xx and the standalone version is needed to edit the .syscfg file.
+Code Composer studio for Tm4c boards does not support FreeRTOS out-of-the-box. This guide can be used to
+set up and download FreeRTOS examples
+https://www.ti.com/lit/an/spma085/spma085.pdf?ts=1762832711110&ref_url=https%253A%252F%252Fe2e.ti.com%252F

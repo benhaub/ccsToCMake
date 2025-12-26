@@ -37,16 +37,6 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-#include <stddef.h>
-
-#ifndef APP_PROCESSOR_CLOCK_FREQUENCY
-#error "Define APP_CLOCK_FREQUENCY to be the desired clock frequency for your application"
-#endif
-
-#ifndef APP_HEAP_SIZE
-#error "Define APP_HEAP_SIZE in bytes"
-#endif
-
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -58,6 +48,14 @@
  *
  * See http://www.freertos.org/a00110.html.
  *----------------------------------------------------------*/
+
+#ifndef APP_PROCESSOR_CLOCK_FREQUENCY
+#error "Define APP_CLOCK_FREQUENCY to be the desired clock frequency for your application"
+#endif
+
+#ifndef APP_HEAP_SIZE
+#error "Define the heap size of the application in bytes"
+#endif
 
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 1
@@ -72,9 +70,9 @@
 #define configIDLE_SHOULD_YIELD             0
 #define configUSE_CO_ROUTINES               0
 #define configUSE_MUTEXES                   1
-#define configUSE_RECURSIVE_MUTEXES         0
+#define configUSE_RECURSIVE_MUTEXES         1
 #define configCHECK_FOR_STACK_OVERFLOW      2
-//Additional - Ben Haubrich, March 17th, 2025
+//Additional - Ben Haubrich, Nov 15th, 2025
 #define configUSE_TIMERS 1
 #define configTIMER_TASK_PRIORITY (5)
 #define configTIMER_QUEUE_LENGTH (5)
@@ -86,7 +84,7 @@
 //#define configMAX_PRIORITIES                ( ( unsigned portBASE_TYPE ) 16 )
 #define configMAX_PRIORITIES ( 16 )
 #define configMAX_CO_ROUTINE_PRIORITIES     ( 2 )
-#define configQUEUE_REGISTRY_SIZE           5
+#define configQUEUE_REGISTRY_SIZE           10
 
 /* Set the following definitions to 1 to include the API function, or zero
 to exclude the API function. */
@@ -131,6 +129,5 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
  */
 //#define configKERNEL_INTERRUPT_PRIORITY         ( 7 << 5 )    /* Priority 7, or 0xE0 as only the top three bits are implemented.  This is the lowest priority. */
 //#define configMAX_SYSCALL_INTERRUPT_PRIORITY     ( 5 << 5 )  /* Priority 5, or 0xA0 as only the top three bits are implemented. */
-
 
 #endif /* FREERTOS_CONFIG_H */
