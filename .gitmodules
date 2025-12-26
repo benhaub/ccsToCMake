@@ -1,3 +1,9 @@
 [submodule "Cc32xx/FreeRTOS"]
 	path = Cc32xx/FreeRTOS
 	url = https://github.com/FreeRTOS/FreeRTOS.git
+[submodule "Tm4c123/FreeRTOS"]
+	path = Tm4c123/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS.git
+[submodule "Tm4c129/FreeRTOS"]
+	path = Tm4c129/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS.git
